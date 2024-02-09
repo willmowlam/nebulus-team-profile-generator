@@ -1,5 +1,5 @@
 {
-  "name": "Team Profile Generator",
+  "name": "team-profile-generator",
   "version": "1.0.0",
   "description": "A Node.js CLI that generates an HTML webpage with contact details of each member of a team.",
   "main": "index.js",

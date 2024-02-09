@@ -11,7 +11,7 @@
   },
   "keywords": [],
   "author": "Will Mowlam",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "jest": "^29.7.0"
   }

@@ -14,5 +14,10 @@
   "license": "MIT",
   "devDependencies": {
     "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "inquirer": "^9.2.14",
+    "path": "^0.12.7"
   }
 }

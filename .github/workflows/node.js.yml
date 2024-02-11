@@ -10,7 +10,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  npm-test:
+  test:
 
     runs-on: ubuntu-latest
 

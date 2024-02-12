@@ -12,37 +12,166 @@ const render = require("./src/page-template.js");
 
 
 // Object array of team members
+const employees = [];
 
-// Function to prompt and add a Manager to the team
-    // Name
-    // Employee ID
-    // Email address
-    // Office number
-
-    // Show Menu
+// Function to prompt for Manager details
+const promptManager = async function() {
+    return inquirer.prompt([
+        // Name
+        {
+            type: 'input',
+            name: 'name',
+            message: "Enter your Name:",
+        },
+        // Employee ID
+        {
+            type: 'input',
+            name: 'id',
+            message: "Enter your Employee ID:",
+        },
+        // Email address
+        {
+            type: 'input',
+            name: 'email',
+            message: "Enter your Email Address:",
+        },
+        // Office number
+        {
+            type: 'input',
+            name: 'office',
+            message: "Enter your Office Number:",
+        },
+    ])
+};
 
 // Function to prompt and add an Engineer to the team
-    // Engineer's Name
-    // ID
-    // Email
-    // GitHub username
-
-    // Show Menu
+const promptEngineer = async function() {
+    return inquirer.prompt([
+        // Engineer's Name
+        {
+            type: 'input',
+            name: 'name',
+            message: "Enter Engineer's Name:",
+        },
+        // ID
+        {
+            type: 'input',
+            name: 'id',
+            message: "Enter Engineer's Employee ID:",
+        },
+        // Email
+        {
+            type: 'input',
+            name: 'email',
+            message: "Enter Engineer's Email Address:",
+        },
+        // GitHub username
+        {
+            type: 'input',
+            name: 'github',
+            message: "Enter Engineer's GitHub username:",
+        },
+    ])
+};
 
 // Function to prompt and add an Intern to the team
-    // Intern’s name
-    // ID
-    // Email
-    // School
+const promptIntern = async function() {
+    return inquirer.prompt([
+        // Intern’s name
+        {
+            type: 'input',
+            name: 'name',
+            message: "Enter Intern's Name:",
+        },
+        // ID
+        {
+            type: 'input',
+            name: 'id',
+            message: "Enter Intern's Employee ID:",
+        },
+        // Email
+        {
+            type: 'input',
+            name: 'email',
+            message: "Enter Intern's Email Address:",
+        },
+        // School
+        {
+            type: 'input',
+            name: 'school',
+            message: "Enter Intern's School:",
+        },
+    ])
+};
 
-    // Show Menu
 
 // Function to Show Menu
-    // Add an engineer
-    // Add an intern
-    // Finish building the team
+async function showMenu(){
 
-// Function to Finish building the team (render the html)
+    const choices = ['Add an engineer...', 'Add an intern...', 'Finish building the team.'];
 
-// Start process by calling Add Manager
+    inquirer.prompt([
+        {
+            type: 'list',
+            name: 'menu',
+            choices: choices
+        }
+    ])
+    .then(async function (answers) {
+
+        switch (answers.menu) {
+        case 'Add an engineer...':
+            // Ask for engineer details
+            const engineerData = await promptEngineer();
+            const engineer = new Engineer(engineerData.name, engineerData.id, engineerData.email, engineerData.github);
+
+            // Add engineer details to employees
+            employees.push(engineer);
+
+            showMenu();            
+            break;
+
+        case 'Add an intern...':
+        
+            // Ask for intern details
+            const internData = await promptIntern();
+            const intern = new Intern(internData.name, internData.id, internData.email, internData.school);
+
+            // Add intern details to employees
+            employees.push(intern);
+
+            showMenu();        
+            break;
+
+        default: 
+            // 'Finish building the team.'
+            console.log("Rendering HTML");
+
+            // Render HTML
+            console.log(render(employees));
+            break;
+
+        }
+
+    })
+
+
+}
+
+// Function to start collecting team information
+async function main() {
+
+    // Ask for manager details
+    const managerData = await promptManager();
+    const manager = new Manager(managerData.name, managerData.id, managerData.email, managerData.office);
+
+    // Add manager details to employees
+    employees.push(manager);
+
+    showMenu();
+
+}
+
+// Start process by calling main()
+main();
 

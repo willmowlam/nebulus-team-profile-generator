@@ -11,5 +11,38 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./src/page-template.js");
 
 
-// TODO: Write Code to gather information about the development team members, and render the HTML file.
+// Object array of team members
+
+// Function to prompt and add a Manager to the team
+    // Name
+    // Employee ID
+    // Email address
+    // Office number
+
+    // Show Menu
+
+// Function to prompt and add an Engineer to the team
+    // Engineer's Name
+    // ID
+    // Email
+    // GitHub username
+
+    // Show Menu
+
+// Function to prompt and add an Intern to the team
+    // Intern’s name
+    // ID
+    // Email
+    // School
+
+    // Show Menu
+
+// Function to Show Menu
+    // Add an engineer
+    // Add an intern
+    // Finish building the team
+
+// Function to Finish building the team (render the html)
+
+// Start process by calling Add Manager
 

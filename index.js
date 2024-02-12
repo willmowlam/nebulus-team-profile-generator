@@ -43,7 +43,6 @@ const promptManager = async function() {
         },
     ])
 };
-    // Show Menu
 
 // Function to prompt and add an Engineer to the team
 const promptEngineer = async function() {
@@ -74,7 +73,6 @@ const promptEngineer = async function() {
         },
     ])
 };
-    // Show Menu
 
 // Function to prompt and add an Intern to the team
 const promptIntern = async function() {
@@ -105,14 +103,62 @@ const promptIntern = async function() {
         },
     ])
 };
-    // Show Menu
+
 
 // Function to Show Menu
-    // Add an engineer
-    // Add an intern
-    // Finish building the team
+async function showMenu(){
 
-// Function to Finish building the team (render the html)
+    const choices = ['Add an engineer...', 'Add an intern...', 'Finish building the team.'];
+
+    inquirer.prompt([
+        {
+            type: 'list',
+            name: 'menu',
+            choices: choices
+        }
+    ])
+    .then(async function (answers) {
+
+        switch (answers.menu) {
+        case 'Add an engineer...':
+            // Ask for engineer details
+            const engineerData = await promptEngineer();
+            const engineer = new Engineer(engineerData.name, engineerData.id, engineerData.email, engineerData.github);
+
+            // Add engineer details to employees
+            employees.push(engineer);
+
+            showMenu();            
+            break;
+
+        case 'Add an intern...':
+        
+            // Ask for intern details
+            const internData = await promptIntern();
+            const intern = new Intern(internData.name, internData.id, internData.email, internData.school);
+
+            // Add intern details to employees
+            employees.push(intern);
+
+            showMenu();        
+            break;
+
+        default: 
+            // 'Finish building the team.'
+            console.log("Rendering HTML");
+
+            // Render HTML
+            console.log(render(employees));
+            break;
+
+        }
+
+    })
+
+
+}
+
+// Function to start collecting team information
 async function main() {
 
     // Ask for manager details
@@ -122,22 +168,8 @@ async function main() {
     // Add manager details to employees
     employees.push(manager);
 
-    // Ask for engineer details
-    const engineerData = await promptEngineer();
-    const engineer = new Engineer(engineerData.name, engineerData.id, engineerData.email, engineerData.github);
+    showMenu();
 
-    // Add engineer details to employees
-    employees.push(engineer);
-
-    // Ask for intern details
-    const internData = await promptIntern();
-    const intern = new Intern(internData.name, internData.id, internData.email, internData.school);
-
-    // Add intern details to employees
-    employees.push(intern);
-    
-    // Render HTML
-    console.log(render(employees));
 }
 
 // Start process by calling main()

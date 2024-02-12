@@ -114,10 +114,13 @@ async function showMenu(){
 
     const choices = ['Add an engineer...', 'Add an intern...', 'Finish building the team.'];
 
+    console.log(""); // Add space
+
     inquirer.prompt([
         {
             type: 'list',
             name: 'menu',
+            message: "What would you like to do now?",
             choices: choices
         }
     ])
@@ -149,12 +152,12 @@ async function showMenu(){
 
         default: 
             // 'Finish building the team.'
-            console.log("Rendering HTML...", "");
+            console.log("\nRendering HTML...");
 
             // Render HTML
             await writeFileAsync(outputPath, render(employees));
 
-            console.log("Rendering HTML...Done");
+            console.log(`HTML file saved to ${outputPath}`);
 
             break;
 
@@ -166,7 +169,7 @@ async function showMenu(){
 
         // Check if error was unable to open the output directory
         if ((err.code === 'ENOENT') && (err.syscall === 'open') && (err.path).includes(outputPath)) {
-            console.error("Error: The output directory doesn't exist.");
+            console.error("\nError: The output directory doesn't exist.");
         } else {
             console.error("An error occurred\n", err);
         }
@@ -178,6 +181,8 @@ async function showMenu(){
 // Function to start collecting team information
 async function main() {
 
+    console.log("\nTeam Profile Generator\n");
+    console.log("Add Manager");
     // Ask for manager details
     const managerData = await promptManager();
     const manager = new Manager(managerData.name, managerData.id, managerData.email, managerData.office);

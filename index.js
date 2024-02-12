@@ -4,9 +4,13 @@ const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
+const util = require("util");
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
+
+// Promisify fs.writeFile() to use promises
+const writeFileAsync = util.promisify(fs.writeFile);
 
 const render = require("./src/page-template.js");
 
@@ -145,16 +149,29 @@ async function showMenu(){
 
         default: 
             // 'Finish building the team.'
-            console.log("Rendering HTML");
+            console.log("Rendering HTML...", "");
 
             // Render HTML
-            console.log(render(employees));
+            await writeFileAsync(outputPath, render(employees));
+
+            console.log("Rendering HTML...Done");
+
             break;
 
         }
 
     })
+    // Catch errors and write to console
+    .catch(function (err) {
 
+        // Check if error was unable to open the output directory
+        if ((err.code === 'ENOENT') && (err.syscall === 'open') && (err.path).includes(outputPath)) {
+            console.error("Error: The output directory doesn't exist.");
+        } else {
+            console.error("An error occurred\n", err);
+        }
+
+    })
 
 }
 

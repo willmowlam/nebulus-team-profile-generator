@@ -46,12 +46,34 @@ const promptManager = async function() {
     // Show Menu
 
 // Function to prompt and add an Engineer to the team
-//const promptEngineer = () => inquirer.prompt([]);
-    // Engineer's Name
-    // ID
-    // Email
-    // GitHub username
-
+const promptEngineer = async function() {
+    return inquirer.prompt([
+        // Engineer's Name
+        {
+            type: 'input',
+            name: 'name',
+            message: "Enter Engineer's Name:",
+        },
+        // ID
+        {
+            type: 'input',
+            name: 'id',
+            message: "Enter Engineer's Employee ID:",
+        },
+        // Email
+        {
+            type: 'input',
+            name: 'email',
+            message: "Enter Engineer's Email Address:",
+        },
+        // GitHub username
+        {
+            type: 'input',
+            name: 'github',
+            message: "Enter Engineer's GitHub username:",
+        },
+    ])
+};
     // Show Menu
 
 // Function to prompt and add an Intern to the team
@@ -78,6 +100,13 @@ async function main() {
     // Add manager details to employees
     employees.push(manager);
 
+    // Ask for engineer details
+    const engineerData = await promptEngineer();
+    const engineer = new Engineer(engineerData.name, engineerData.id, engineerData.email, engineerData.github);
+
+    // Add engineer details to employees
+    employees.push(engineer);
+    
     // Render HTML
     console.log(render(employees));
 }

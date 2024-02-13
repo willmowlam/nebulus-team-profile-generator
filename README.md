@@ -5,9 +5,11 @@
 
 # Team Profile Generator
 
-## Description
-
 A Node.js command-line application to easily create an HTML file containing basic information about your software engineering team.
+
+Click the thumbnail below to see a screenshot example of the rendered html file:
+
+<a href="./assets/images/screenshot.png" alt="Screenshot"><img src="./assets/images/screenshot.png" alt="Screenshot" width="150" height="auto"></a>
 
 ## Table of Contents
 1. [Installation](#installation)
@@ -28,19 +30,30 @@ cd nebulus-team-profile-generator
 
 ## Usage
 
-node index.js
+1. ```node index.js```
+2. Answer questions about your team
+3. Copy the rendered team.html file and style.css from the output folder
 
 ## Features
 
-- Automatically render HTML from user input
+- Collect input about team members via CLI
 - Enter one Manager
 - Enter any number of Engineers
 - Enter any number of Interns
+- Multicolour prompting
 - Customizable CSS
+- Automatically renders HTML/CSS to output folder
+- GitHub Actions Workflow configuration for Node.js testing on merge to main
 
 ## Tests
 
-npm run test
+Test classes:
+
+```npm run test```
+
+Create a quick mock team.html file without input:
+
+```node mock.js```
 
 ## Questions
 

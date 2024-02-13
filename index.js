@@ -5,6 +5,7 @@ const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 const util = require("util");
+const chalk = require('chalk');
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
@@ -25,25 +26,25 @@ const promptManager = async function() {
         {
             type: 'input',
             name: 'name',
-            message: "Enter your Name:",
+            message: chalk.yellow("Enter your Name:"),
         },
         // Employee ID
         {
             type: 'input',
             name: 'id',
-            message: "Enter your Employee ID:",
+            message: chalk.yellow("Enter your Employee ID:"),
         },
         // Email address
         {
             type: 'input',
             name: 'email',
-            message: "Enter your Email Address:",
+            message: chalk.yellow("Enter your Email Address:"),
         },
         // Office number
         {
             type: 'input',
             name: 'office',
-            message: "Enter your Office Number:",
+            message: chalk.yellow("Enter your Office Number:"),
         },
     ])
 };
@@ -55,25 +56,25 @@ const promptEngineer = async function() {
         {
             type: 'input',
             name: 'name',
-            message: "Enter Engineer's Name:",
+            message: chalk.yellow("Enter Engineer's Name:"),
         },
         // ID
         {
             type: 'input',
             name: 'id',
-            message: "Enter Engineer's Employee ID:",
+            message: chalk.yellow("Enter Engineer's Employee ID:"),
         },
         // Email
         {
             type: 'input',
             name: 'email',
-            message: "Enter Engineer's Email Address:",
+            message: chalk.yellow("Enter Engineer's Email Address:"),
         },
         // GitHub username
         {
             type: 'input',
             name: 'github',
-            message: "Enter Engineer's GitHub username:",
+            message: chalk.yellow("Enter Engineer's GitHub username:"),
         },
     ])
 };
@@ -85,25 +86,25 @@ const promptIntern = async function() {
         {
             type: 'input',
             name: 'name',
-            message: "Enter Intern's Name:",
+            message: chalk.yellow("Enter Intern's Name:"),
         },
         // ID
         {
             type: 'input',
             name: 'id',
-            message: "Enter Intern's Employee ID:",
+            message: chalk.yellow("Enter Intern's Employee ID:"),
         },
         // Email
         {
             type: 'input',
             name: 'email',
-            message: "Enter Intern's Email Address:",
+            message: chalk.yellow("Enter Intern's Email Address:"),
         },
         // School
         {
             type: 'input',
             name: 'school',
-            message: "Enter Intern's School:",
+            message: chalk.yellow("Enter Intern's School:"),
         },
     ])
 };
@@ -112,7 +113,11 @@ const promptIntern = async function() {
 // Function to Show Menu
 async function showMenu(){
 
-    const choices = ['Add an engineer...', 'Add an intern...', 'Finish building the team.'];
+    const choices = [
+        {name: chalk.green('Add an engineer...'), value: 'engineer'},
+        {name: chalk.green('Add an intern...'), value: 'intern'},
+        {name: chalk.green('Finish building the team.'), value: 'finish'},
+    ];
 
     console.clear();
     console.log(""); // Add space
@@ -121,14 +126,14 @@ async function showMenu(){
         {
             type: 'list',
             name: 'menu',
-            message: "What would you like to do now?",
+            message: chalk.yellow("What would you like to do now?"),
             choices: choices
         }
     ])
     .then(async function (answers) {
 
         switch (answers.menu) {
-        case 'Add an engineer...':
+        case 'engineer':
             // Ask for engineer details
             const engineerData = await promptEngineer();
             const engineer = new Engineer(engineerData.name, engineerData.id, engineerData.email, engineerData.github);
@@ -139,7 +144,7 @@ async function showMenu(){
             showMenu();            
             break;
 
-        case 'Add an intern...':
+        case 'intern':
         
             // Ask for intern details
             const internData = await promptIntern();
@@ -155,12 +160,12 @@ async function showMenu(){
             // 'Finish building the team.'
 
             console.clear();
-            console.log("\nRendering HTML...");
+            console.log(chalk.blue("\nRendering HTML..."));
 
             // Render HTML
             await writeFileAsync(outputPath, render(employees));
 
-            console.log(`HTML file saved to ${outputPath}`);
+            console.log(chalk.green(`HTML file saved to ${outputPath}`));
 
             break;
 
@@ -172,9 +177,9 @@ async function showMenu(){
 
         // Check if error was unable to open the output directory
         if ((err.code === 'ENOENT') && (err.syscall === 'open') && (err.path).includes(outputPath)) {
-            console.error("\nError: The output directory doesn't exist.");
+            console.error(chalk.red("\nError: The output directory doesn't exist."));
         } else {
-            console.error("\nAn error occurred\n", err);
+            console.error(chalk.red("\nAn error occurred\n"), err);
         }
 
     })
@@ -184,8 +189,8 @@ async function showMenu(){
 // Function to start collecting team information
 async function main() {
 
-    console.log("\nTeam Profile Generator\n");
-    console.log("Add Manager");
+    console.log(chalk.underline.magenta("\nTeam Profile Generator\n"));
+    console.log(chalk.green("Add Manager"));
     // Ask for manager details
     const managerData = await promptManager();
     const manager = new Manager(managerData.name, managerData.id, managerData.email, managerData.office);

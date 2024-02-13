@@ -11,15 +11,16 @@ Click the thumbnail below to see a screenshot example of the rendered html file:
 
 <a href="./assets/images/screenshot.png" alt="Screenshot"><img src="./assets/images/screenshot.png" alt="Screenshot" width="150" height="auto"></a>
 
-View an example of the [output HTML](./assets/example/team.html) rendered via mock.js (see [Tests](#tests)).
+View an example of the [output HTML](./assets/example/team.html).
 
 ## Table of Contents
 1. [Installation](#installation)
 2. [Usage](#usage)
-3. [Features](#features)
-4. [Tests](#tests)
-5. [Questions](#questions)
-6. [License](#license)
+3. [Credits](#credits)
+4. [Features](#features)
+5. [Tests](#tests)
+6. [Questions](#questions)
+7. [License](#license)
 
 ## Installation
 
@@ -35,6 +36,10 @@ cd nebulus-team-profile-generator
 1. ```node index.js```
 2. Answer questions about your team
 3. Copy the rendered team.html file and style.css from the output folder
+
+## Credits
+
+Email RegEx validation by [emailregex.com](https://emailregex.com/)
 
 ## Features
 

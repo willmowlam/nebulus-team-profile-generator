@@ -114,6 +114,7 @@ async function showMenu(){
 
     const choices = ['Add an engineer...', 'Add an intern...', 'Finish building the team.'];
 
+    console.clear();
     console.log(""); // Add space
 
     inquirer.prompt([
@@ -152,6 +153,8 @@ async function showMenu(){
 
         default: 
             // 'Finish building the team.'
+
+            console.clear();
             console.log("\nRendering HTML...");
 
             // Render HTML
@@ -171,7 +174,7 @@ async function showMenu(){
         if ((err.code === 'ENOENT') && (err.syscall === 'open') && (err.path).includes(outputPath)) {
             console.error("\nError: The output directory doesn't exist.");
         } else {
-            console.error("An error occurred\n", err);
+            console.error("\nAn error occurred\n", err);
         }
 
     })

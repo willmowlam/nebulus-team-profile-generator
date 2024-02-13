@@ -1,0 +1,17 @@
+.jumbotron{
+  background-color: deeppink;
+  color: white;
+}
+
+.card-header {
+  background-color: dodgerblue;
+  color: white;
+}
+
+.card-body {
+  background-color: rgba(0,0,0,.03);
+}
+
+.card{
+  min-width: fit-content;
+}

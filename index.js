@@ -9,6 +9,7 @@ const chalk = require('chalk');
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
+const outputCSSPath = path.join(OUTPUT_DIR, "style.css");
 
 // Promisify fs.writeFile() to use promises
 const writeFileAsync = util.promisify(fs.writeFile);
@@ -141,7 +142,7 @@ async function showMenu(){
             // Add engineer details to employees
             employees.push(engineer);
 
-            showMenu();            
+            showMenu();
             break;
 
         case 'intern':
@@ -166,6 +167,11 @@ async function showMenu(){
             await writeFileAsync(outputPath, render(employees));
 
             console.log(chalk.green(`HTML file saved to ${outputPath}`));
+
+            // Copy the css from style
+            fs.copyFile('./src/style.css', './output/style.css', (err)=>{if (err){console.error(chalk.red("Error copying CSS file"), err)}});
+
+            console.log(chalk.green(`CSS file saved to ${outputCSSPath}`));
 
             break;
 

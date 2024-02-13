@@ -14,4 +14,16 @@
 
 .card{
   min-width: fit-content;
+  max-width: 33vw; /* Max three cards per row */
+}
+
+@media (max-width: 992px) {
+  .card {
+    max-width: 50vw; /* Two cards per row on medium screens */
+  }
+}
+@media (max-width: 576px) {
+  .card{
+    max-width: 100vw; /* One card per row on small screen */
+  }
 }

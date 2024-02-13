@@ -22,7 +22,7 @@ const render = require("./src/page-template.js");
 // Object array of team members
 const employees = [];
 
-const manager = new Manager('Jared', 1, 'jared@fakeemal.com', 1);
+const manager = new Manager('Jared', 1, 'jared@fakeemail.com', 1);
 const engineer1 = new Engineer('Alec', 2, 'alec@fakeemail.com', 'aleceng');
 const engineer2 = new Engineer('Grace', 3, 'grace@fakeemail.com', 'graceeng');
 const engineer3 = new Engineer('Tammer', 4, 'tammer@fakeemail.com', 'tammereng');

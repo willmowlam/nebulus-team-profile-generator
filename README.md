@@ -47,6 +47,8 @@ cd nebulus-team-profile-generator
 
 ## Tests
 
+Built and tested with Node.js v20.x
+
 Test classes:
 
 ```npm run test```

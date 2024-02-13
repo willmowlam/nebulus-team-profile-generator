@@ -11,6 +11,8 @@ Click the thumbnail below to see a screenshot example of the rendered html file:
 
 <a href="./assets/images/screenshot.png" alt="Screenshot"><img src="./assets/images/screenshot.png" alt="Screenshot" width="150" height="auto"></a>
 
+View an example of the [output HTML](./assets/example/team.html) rendered via mock.js (see [Tests](#tests)).
+
 ## Table of Contents
 1. [Installation](#installation)
 2. [Usage](#usage)
